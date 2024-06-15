@@ -22,7 +22,7 @@ export default function Clientes ()  {
         {clientes && clientes.length > 0 ? (
           <ClientList clientes={clientes} />
         ) : (
-          <p>No hay clientes registrados.</p>
+          <p>No hay clientes registrados de momento.</p>
         )}
       </div>
     </GuestLayout>

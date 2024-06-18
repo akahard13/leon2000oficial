@@ -11,7 +11,7 @@ class CreateFormulariosTable extends Migration
             $table->id();
             $table->string('nombres');
             $table->string('apellidos');
-            $table->string('cedula')->unique();
+            $table->string('cedula');
             $table->unsignedBigInteger('departamento');
             $table->unsignedBigInteger('municipio');
             $table->string('direccion');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import ButtonDiv from '@/Components/others/ButtonDiv';
 const formatDateToWords = (dateString) => {
     const months = [
         "enero", "febrero", "marzo", "abril", "mayo", "junio",
@@ -25,7 +25,7 @@ const ClientList = ({ clientes }) => {
             <h1 className="text-2xl font-bold mb-4">Nuestros Clientes</h1>
             <ul className="space-y-4">
                 {clientes.map((cliente) => (
-                    <li key={cliente.id} className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                    <li key={cliente.id} className="bg-green-100 p-4 rounded-lg shadow-lg border border-gray-200">
                         <div className="flex flex-col lg:flex-row">
                             {cliente.imagen && (
                                 <img
@@ -37,19 +37,15 @@ const ClientList = ({ clientes }) => {
                             <div className="flex flex-col lg:w-2/3 lg:ml-4">
                                 <h2 className="text-xl font-semibold">{cliente.nombre} {cliente.apellidos}</h2>
                                 <p className="text-gray-700 text-justify">
-                                    {expandedClienteId === cliente.id
-                                        ? cliente.historia
-                                        : `${cliente.historia.slice(0, 500)}...`}
+                                    {`${cliente.historia.slice(0, 500)}...`}
                                 </p>
-                                {cliente.historia.length > 200 && (
-                                    <button
-                                        onClick={() => toggleExpand(cliente.id)}
-                                        className="text-blue-500 mt-2"
-                                    >
-                                        {expandedClienteId === cliente.id ? 'Ver menos' : 'Ver más'}
-                                    </button>
-                                )}
-                                <p className="text-gray-500 mt-2 text-right">{formatDateToWords(cliente.fecha)}</p>
+                                <div className="flex mt-10 justify-between">
+                                    {cliente.historia.length > 500 && (
+                                        <ButtonDiv ruta={route('public.home')} text={'Ver Más'} />
+                                    )}
+                                    <p className="text-gray-500 mt-2 text-right">{formatDateToWords(cliente.fecha)}</p>
+                                </div>
+
                             </div>
                         </div>
                     </li>

@@ -18,9 +18,9 @@ Route::get('/', function () {
 Route::get('/Clientes', function () {
     return Inertia::render('Clientes');
 })->name('public.clientes');
-
-
-
+Route::get('/solicitar_credito', [FormularioController::class, 'create'])->name('solicitar_credito');
+Route::post('/formularios/municipiosPorDepartamento/{departamento}', [FormularioController::class, 'municipiosPorDepartamento'])->name('municipiosPorDepartamento');
+Route::resource('formularios', FormularioController::class)->except(['index', 'create', 'municipiosPorDepartamento']);
 Route::get('/admin', function () {
     return Inertia::render('Auth/Login');
 });
@@ -28,7 +28,8 @@ Route::get('/informacion_financiera', [InformacionFinancieraController::class, '
 Route::middleware(['auth', 'verified'])->group(function () {
     //Formularios-Dashboard
     Route::get('/admin/dashboard', [FormularioController::class, 'index'])->name('dashboard');
-    Route::resource('formularios', FormularioController::class)->except(['index']);
+    
+
 
     //CONFIGURACION PAGE
     Route::get('/admin/configuracion',[ConfiguracionController::class, 'index'])->name('configuracion');

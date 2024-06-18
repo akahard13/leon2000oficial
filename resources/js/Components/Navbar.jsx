@@ -63,9 +63,9 @@ const Navbar = () => {
             >
               {item.text !== 'Información Financiera' && item.link.length > 0
                 ?
-                <Link href={item.link}>{item.text}</Link>
+                <a href={item.link} className='block px-4 py-2 text-sm'>{item.text}</a>
                 :
-                <Link>{item.text}</Link>
+                <a className='block px-4 py-2 text-sm'>{item.text}</a>
               }
               {item.text === 'Información Financiera' && dropdownOpen && (
                 <div className='absolute bg-white shadow-lg rounded-md mt-2 right-0 z-10 w-56 origin-top-right ring-1 ring-black ring-opacity-5'>
@@ -76,7 +76,7 @@ const Navbar = () => {
                         href={info.link.startsWith('http://') || info.link.startsWith('https://') ? info.link : `https://${info.link}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className='block px-4 py-2 text-sm hover:bg-[white] hover:text-[#90c225]'
+                        className='block px-4 py-2 text-sm hover:bg-blue hover:text-[#90c225]'
                       >
                         {info.nombre}
                       </a>

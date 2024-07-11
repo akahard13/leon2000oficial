@@ -14,16 +14,15 @@ export default function Clientes ()  {
   useEffect(() => {
       setClientes(info[0].clientes);
   }, [info]);
+
   return (
     <GuestLayout>
       <Head title="Clientes" />
       
       <div className="p-6">
-        {clientes && clientes.length > 0 ? (
+        
           <ClientList clientes={clientes} />
-        ) : (
-          <p>No hay clientes registrados de momento.</p>
-        )}
+        
       </div>
     </GuestLayout>
   );

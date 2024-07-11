@@ -9,6 +9,7 @@ use App\Models\Evento;
 use App\Models\FrecuenciaPago;
 use App\Models\InformacionFinanciera;
 use App\Models\Sucursal;
+use App\Models\tipo_creditos;
 use App\Models\TipoCambio;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -34,6 +35,7 @@ class ShareData extends Middleware
                 'sucursales'=> Sucursal::all(),
                 'creditos' => Credito::all(),
                 'frecuencias'=> FrecuenciaPago::all(),
+                'tipoCreditos' => tipo_creditos::all(),
             ],
         ];
     }

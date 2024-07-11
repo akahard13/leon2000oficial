@@ -7,11 +7,11 @@ export default function Guest({ children }) {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <div className="mx-auto max-w-screen-xl p-2 lg:pl-6">
                 {children}
             </div>
             <Footer />
-            </div>
+        </div>
     );
 }

@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import Main from './Configuracion/TipoCambio/Main';
 import Redirect from './Configuracion/Clientes/Redirect';
+import RedirectButtons from './Configuracion/RedirectButtons';
 const Configuracion = ({ auth, tipoCambio }) => {
     const [tasaCambio, setTasaCambio] = useState(tipoCambio);
     useEffect(() => {
@@ -25,7 +26,26 @@ const Configuracion = ({ auth, tipoCambio }) => {
                 <div className="rounded mt-4">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <Redirect/>
+                            <RedirectButtons
+                                title="Clientes"
+                                createRoute={route('clientes.create')}
+                                listRoute={route('clientes.index')}
+                                createText="Crear"
+                                listText="Ver Lista"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="rounded mt-4">
+                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <RedirectButtons
+                                title="Créditos"
+                                createRoute={route('creditos.create')}
+                                listRoute={route('creditos.index')}
+                                createText="Crear"
+                                listText="Ver Lista"
+                            />
                         </div>
                     </div>
                 </div>

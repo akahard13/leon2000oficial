@@ -1,10 +1,13 @@
 <?php
+use App\Http\Controllers\CalculadoraController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\FormularioController;
 use App\Http\Controllers\InformacionFinancieraController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TipoCambioController;
+use App\Http\Controllers\TipoCreditosController;
 use App\Models\TipoCambio;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,6 +21,8 @@ Route::get('/', function () {
 Route::get('/Clientes', function () {
     return Inertia::render('Clientes');
 })->name('public.clientes');
+Route::get('/calcular_credito',[CalculadoraController::class, 'index'])->name('calculadora');
+Route::post('/calculadora/obtener_intereses/{credito}/{monto}/{plazo}', [CalculadoraController::class, 'obtener_intereses'])->name('calculadora.intereses');
 Route::get('/solicitar_credito', [FormularioController::class, 'create'])->name('solicitar_credito');
 Route::post('/formularios/municipiosPorDepartamento/{departamento}', [FormularioController::class, 'municipiosPorDepartamento'])->name('municipiosPorDepartamento');
 Route::resource('formularios', FormularioController::class)->except(['index', 'create', 'municipiosPorDepartamento']);
@@ -48,7 +53,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/tipo_cambio/{tipoCambio}', [TipoCambioController::class, 'edit'])->name('tipo_cambio.edit');
     Route::put('/admin/tipo_cambio/{tipoCambio}', [TipoCambioController::class, 'update'])->name('tipo_cambio.update');
     Route::delete('/admin/tipo_cambio/{tipoCambio}', [TipoCambioController::class, 'destroy'])->name('tipo_cambio.destroy');
-
+    //Creditos
+    Route::resource('/admin/creditos', CreditoController::class);
+    Route::resource('admin/tipo_creditos', TipoCreditosController::class);
     //CLIENTES
     Route::resource('/admin/clientes', ClienteController::class);
     Route::put('/admin/clientes/toggle-mostrar/{cliente}', [ClienteController::class, 'toggleMostrar'])->name('clientes.toggleMostrar');
